@@ -421,3 +421,4 @@ const getProblem = () => {
         printWarning('il faut sisair les contraintes', emptyMsg)
     }
 }
+
