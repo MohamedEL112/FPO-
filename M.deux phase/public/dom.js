@@ -358,11 +358,11 @@ const printHeaderNumRowCol = (arr, cls) => {
 
 const printTableHead = (phase) => {
     const thead = createNode('thead')
-    const cBasis = createNode('th', [], 'coefficient\n de base')
+    const cBasis = createNode('th', [], '\nCb')
     cBasis.setAttribute('rowspan', 2)
-    const cBasicVars = createNode('th', [], 'variable \nde base')
+    const cBasicVars = createNode('th', [], 'Cj\nvariable\nde base')
     cBasicVars.setAttribute('rowspan', 2)
-    const b = createNode('th', [], 'b')
+    const b = createNode('th', [], '\nb')
     b.setAttribute('rowspan', 2)
 
     const p1CVRow = phase == 1 ? printHeaderNumRowCol($.p1CostVector) : printHeaderNumRowCol($.costVector)
@@ -437,7 +437,7 @@ const printTableCard = (phase) => {
 
 const printRatio = (card) => {
     const trHead = card.querySelector('thead tr')
-    const th = createNode('th', [], 'b/cpv')
+    const th = createNode('th', [], '\nb/cpv')
     th.setAttribute('rowspan', 2)
     trHead.appendChild(th)
 
@@ -497,3 +497,4 @@ const printAnswer = () => {
     div.appendChild(body)
     output.appendChild(div)
 }
+
