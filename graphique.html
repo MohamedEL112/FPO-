@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PL Graphique v0.1</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./M.graphique/css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="manifest" href="./M.graphique/icon/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="./M.graphique/css/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="./M.graphique/css/custom.css" />
+    
+  </head>
+  <body class="cyan lighten-4">
+    <nav style=" background: rgb(240,245,246);
+    background: linear-gradient(90deg, rgba(240,245,246,1) 14%, rgba(129,198,226,1) 100%);" class="navbar" role="navigation" aria-label="main navigation" w>
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://simplex2p.web.app">
+          <img src="./M.graphique/icon.png" width="160">
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasic" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item " href="./index.html">
+            Home
+          </a>
+          <a class="navbar-item" href="./towphase.html">
+            Méthode Deux Phases
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    
+    <div
+      id="popup_container"
+      style="
+        background-color: rgba(71, 63, 63, 0.5);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        display: none;
+      "
+    >
+      <div
+        class="card-panel"
+        style="width: 350px; margin: auto; margin-top: 10%"
+      >
+        <div class="card-content">
+          <p id="alert_text" style="text-align: center; font-size: 20px"></p>
+        </div>
+        <div class="card-action">
+          <a href="#" id="btn_close_alert" style="color: black">OK</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="./M.graphique/res/math-bg.png" />
+            <span class="card-title black-text ">Contraintes</span>
+          </div>
+          <div class="card-content">
+            <div id="equations">
+              <form class="form-inline equation" role="form">
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"
+                  value="4"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>X1</label>
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"btn-outline-success
+                  value="2"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>X2</label>
+                <select class="inegalite" style="display: inline; width: 50px">
+                  <option value="inf">≤</option>
+                  <option value="sup">≥</option>
+                </select>
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"
+                  value="13"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>(0)</label>
+              </form>
+              <form class="form-inline equation" role="form">
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"
+                  value="5"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>X1</label>
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"
+                  value="6"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>X2</label>
+                <select class="inegalite" style="display: inline; width: 50px">
+                  <option value="inf">≤</option>
+                  <option value="sup">≥</option>
+                </select>
+                <input
+                  type="number"
+                  class="form-control coefficients"
+                  style="width: 20%"
+                  value="25"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label>(1)</label>
+              </form>
+            </div>
+            <span class="card-title is-dark">Opération</span>
+            <div>
+              <form>
+                <select id="operation" style="display: inline; width: 150px">
+                  <option value="max" >Max</option>
+                  <option value="min">Min</option>
+                </select>
+                <input
+                  type="number"
+                  class="form-control op_coefficients"
+                  style="width: 20%"
+                  value="1"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label for="coeffx1">X1</label>
+                <input
+                  type="number"
+                  class="form-control op_coefficients"
+                  style="width: 20%"
+                  value="1"
+                  onchange="verifyInputsRealtime(this)"
+                />
+                <label for="coeffx2">X2</label>
+              </form>
+            </div>
+            <button
+              class="waves-effect waves-light btn"
+              onclick="addEquation();"
+            >
+              <i class="material-icons left">add_circle</i>
+              Ajouter
+            </button>
+            <button
+              id="resolve_btn"
+              type="button"
+              class="waves-effect waves-light btn"
+            >
+              <i class="material-icons left">done</i>
+              Résoudre
+            </button>
+          </div>
+        </div>
+      </div>
+     
+      <div class="col s12 m8">
+        <div id="main_title" style="background-color: transparent">
+          
+          <div class="row" style="margin-top: 50px"></div>
+        
+          
+          <div class="row">
+            <div class="col m3"></div>
+           
+            <div class="col m3"></div>
+          </div>
+        </div>
+        
+        <div class="card" id="result_container" style="display: none">
+          <div class="card-content">
+            <span class="card-title btn-outline-success">Programmation Linéaire</span>
+            <div
+          
+              id="drawArea"
+              style="width: 98%; height: 500px; margin: auto; display: none"
+            ></div>
+            <table id="zoom_container" style="display: none">
+              <tr>
+                <td class="zoom_components" id="zoom_plus">
+                  <i class="material-icons">zoom_in</i>
+                </td>
+                <td id="zoom_value">50</td>
+                <td class="zoom_components" id="zoom_moins">
+                  <i class="material-icons">zoom_out</i>
+                </td>
+              </tr>
+            </table>
+            <table id="legend_container">
+              <tr>
+                <td
+                  id="legend_area"
+                  style="
+                   background-color: rgba(44, 160, 101, 0.5);
+                    width: 35px;
+                    height: 20px;
+                  "
+                ></td>
+                <td>: Region des solutions</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    </footer>
+    <script src="./M.graphique/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./M.graphique/js/materialize.min.js"></script>
+    <script type="text/javascript" src="./M.graphique/js/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="./M.graphique/js/math.min.js"></script>
+    <script type="text/javascript" src="./M.graphique/js/core.js"></script>
+    <script src="./M.graphique/js/script.js"></script>
+  </body>
+</html>

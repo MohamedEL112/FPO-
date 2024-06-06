@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="manifest" href="./M.deux phase/public/icon/site.webmanifest">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./M.deux phase/public/index.css">
+  <title>simplex2p</title>
+</head>
+
+<body>
+  
+  <nav style=" background: rgb(240,245,246);
+  background: linear-gradient(90deg, rgba(240,245,246,1) 14%, rgba(129,198,226,1) 100%);" class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://simplex2p.web.app">
+        <img src="./M.deux phase/public/icon.png" width="160">
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasic" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="./index.html">
+          Home
+        </a>
+        <a class="navbar-item" href="./towphase.html">
+          Méthode Graphique
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="section">
+    <div class="container">
+      <div class="block">
+        <p class="title" style="color: rgb(126, 163, 243);">Méthode deux Phases</p>
+        <p class="subtitle">avec des étapes détaillées !</p>
+      </div>
+      <div class="block columns">
+        <div class="column is-three-fifths-desktop">
+          <div class="block">
+            <textarea id="problem" class="textarea is-focused is-info" rows="8"></textarea>
+          </div>
+          <div class="level is-mobile">
+            <div class="level-item">
+              <button id="solve" class="button is-dark">Calculer</button>
+            </div>
+            <div class="level-item">
+              <button id="reset" class="button is-dark" disabled>Effacer</button>
+            </div>
+           
+          </div>
+          <div class="block" id="empty-msg"></div>
+        </div>
+        <div class="card column">
+          <header class="card-header">
+            <p class="card-header-title has-background-grey-lighter">
+              Entrez le programme linéaire dans la zone de saisie
+            </p>
+          </header>
+          <div class="card-content is-size-7">
+            <div class="content">
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item"><b>Utilisez la syntaxe suivante:</b></div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <button class="button is-light is-small">
+                      <label class="checkbox"><input type="checkbox" id="toggle-guide">afficher les détails</label>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="guide">
+                <p> <b>Première partie:{min/max}={fonction objectif}</b></p>
+                <div class="level is-mobile">
+                  <div class="level-item">Example:</div>
+                  <div class="level-item"><textarea name="eg1" rows="1" readonly
+                      class="has-background-light">max = 3x1 + 2x2</textarea></div>
+                </div>
+                <ul class="details hide">
+                  <li>Spécifiez la minimisation ou la maximisation en utilisant "min" ou "max".</li>
+                  <li>Écrire l'expression de la fonction objectif</li>
+                  <li>Gardez les deux sur une seule ligne et séparez min/max et l'expression par le signe "="</li>
+                </ul>
+                <p><b>Deuxième partie : les contraintes</b></p>
+                <div class="level is-mobile">
+                  <div class="level-item">Exemple:</div>
+                  <div class="level-item"><textarea name="eg2" rows="3" readonly
+                      class="has-background-light"></textarea></div>
+                </div>
+                <ul class="details hide">
+                  <li>Écrivez chaque contrainte sur une ligne séparée</li>
+                  <li>Pas besoin d'écrire des contraintes de non-négativité:</li>
+                  
+                  <li><b style="color: rgb(199, 14, 14);">Évitez d'utiliser les noms de variables suivants : <i>e, s, a</i> car ils sont utilisés respectivement dans l'algorithme. 
+                <strong>s:</strong>variable d'excès /
+               <strong>a:</strong>Variable artificielle/
+               <strong>e:</strong>Variable d’écart                           
+               </b></li>
+
+                </ul>
+                <p class="has-text-weight-bold">La zone de texte de saisie contient déjà un exemple</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div id="output"></div>
+    </div>
+  </div>
+  
+  <script src="./M.deux phase/public/calculate.js"></script>
+  <script src="./M.deux phase/public/dom.js"></script>
+</body>
+
+</html>
